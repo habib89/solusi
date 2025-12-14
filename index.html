@@ -115,9 +115,9 @@
             position: relative;
         }
 
-        /* Profile Section */
+        /* Profile Section - MODIFIED */
         .profile-section {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
             padding: 50px;
@@ -126,6 +126,7 @@
             overflow: hidden;
             transform: perspective(1000px) rotateX(2deg);
             transition: transform 0.5s ease;
+            backdrop-filter: blur(10px);
         }
 
         .profile-section:hover {
@@ -256,24 +257,28 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        /* Stats Section */
+        /* Stats Section - MODIFIED */
         .stats-container {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             margin: 40px 0;
             gap: 25px;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-item {
             text-align: center;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .stat-item::before {
@@ -295,26 +300,21 @@
 
         .stat-item:hover {
             transform: translateY(-10px) scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .stat-number {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 10px;
-            color: var(--white);
+            color: var(--primary);
             position: relative;
             display: inline-block;
-        }
-
-        .stat-number::after {
-            content: '+';
-            position: absolute;
-            right: -15px;
-            top: 0;
-            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             animation: countUp 2s ease-out;
-            opacity: 0;
         }
 
         @keyframes countUp {
@@ -324,8 +324,27 @@
 
         .stat-label {
             font-size: 1.1rem;
-            opacity: 0.9;
-            color: var(--white);
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .stat-label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-item:hover .stat-label::after {
+            opacity: 1;
         }
 
         /* Skills Section */
